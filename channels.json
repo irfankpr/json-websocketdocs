@@ -3,6 +3,7 @@
     "base_url": "ws://localhost:8800/",
     "auth_param": "token",
     "channels": [
+        
         {
             "tag": "Chat",
             "path": "ws/chat/{room_id}/",
@@ -11,8 +12,25 @@
                 {"name": "room_id", "description": "Chat room identifier", "required": true},
                 {"name": "mode", "description": "Optional connection mode", "required": false}
             ],
-            "request": { "data_model": { "type": "chat.message", "payload": {"text": "string"} }},
-            "response": { "data_model": { "type": "chat.message", "payload": {"text": "string"} }}
+            "request": { 
+                "data_model": { "type": "chat.message", "payload": {"text": "string"} }
+            },
+            "response": { 
+                "data_model": { "type": "chat.message", "payload": {"text": "string"} }
+            }
+        },
+
+        {
+            "tag": "System",
+            "path": "ws/notifications/",
+            "description": "Read-only connection to receive system notifications in real time.",
+            "query_params": [],
+            "response": {
+                "data_model": {
+                    "type": "notification.event",
+                    "payload": { "title": "string", "message": "string", "timestamp": "ISO-8601 datetime" }
+                }
+            }
         }
     ]
 }
