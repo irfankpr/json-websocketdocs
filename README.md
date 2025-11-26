@@ -100,10 +100,4 @@ If you've used this in your workflow and have feedback, feel free to open an iss
 
 ---
 
-## License
-
-MIT License
-
----
-
 ⭐ If this tool saves you time or helps your team collaborate better, consider giving the repository a star.
