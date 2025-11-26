@@ -101,3 +101,48 @@ If you've used this in your workflow and have feedback, feel free to open an iss
 ---
 
 ⭐ If this tool saves you time or helps your team collaborate better, consider giving the repository a star.
+
+
+
+---
+
+## 🧵 Behind the Build
+
+This project wasn’t something random — it came from a real problem in day-to-day development.
+
+As a backend developer, I always care about giving **clear, reliable documentation** to the frontend developers I work with. Good documentation reduces confusion, prevents guesswork, and keeps teamwork smooth.
+
+Tools like DRF Spectacular make documenting REST APIs effortless — everything is structured, testable, and shareable.
+
+But when our team introduced real-time features using WebSockets, everything changed — and not in a good way.
+
+There was:
+
+- No consistent format for documenting WebSocket endpoints  
+- No unified way to show request and response structures  
+- No built-in testing interface like REST tools provide  
+- No “single source of truth” frontend developers could trust  
+
+Every method found online felt incomplete, improvised, or too tied to specific frameworks.  
+Nothing felt like:  
+> **“Okay, THIS is how WebSocket docs should look.”**
+
+So instead of accepting chaos as the standard — I built this.
+
+Not with generators.  
+Not with templates.  
+Not with frameworks.
+
+The entire project — including this README — was built through **vibe coding**.  
+I didn’t manually type a single line.  
+It evolved naturally, idea by idea.
+
+💡 The goal was simple:
+
+> Make WebSocket docs feel as natural and usable as REST API docs.
+
+If this project helps even one more developer avoid the same confusion we faced — then it already succeeded.
+
+---
+
+✨ Thanks for visiting — and if this project helps you or your team, a ⭐ means a lot.
