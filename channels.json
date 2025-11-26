@@ -1,0 +1,18 @@
+{
+    "title": "Demo WebSocket API",
+    "base_url": "ws://localhost:8800/",
+    "auth_param": "token",
+    "channels": [
+        {
+            "tag": "Chat",
+            "path": "ws/chat/{room_id}/",
+            "description": "Connect and send chat messages.",
+            "query_params": [
+                {"name": "room_id", "description": "Chat room identifier", "required": true},
+                {"name": "mode", "description": "Optional connection mode", "required": false}
+            ],
+            "request": { "data_model": { "type": "chat.message", "payload": {"text": "string"} }},
+            "response": { "data_model": { "type": "chat.message", "payload": {"text": "string"} }}
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Channels WebSocket Docs</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<div class="topbar">
+    <div id="title">WebSocket Docs</div>
+
+    <div class="top-actions">
+        <a class="schema-link" href="./channels.json" target="_blank">
+            📘 View JSON Schema Format
+        </a>
+        <!-- New: JSON Upload -->
+        <label class="upload-btn">
+            📂 Load JSON
+            <input type="file" id="json-upload" accept=".json" hidden>
+        </label>
+
+        <button class="toggle-btn" onclick="toggleDark()">🌞 Light</button>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- BASE URL + AUTH -->
+    <div class="baseurl-box">
+        <label>Base WebSocket URL</label>
+        <input id="base-url" placeholder="wss://example.com/" />
+
+        <label>Authentication Token</label>
+        <input id="auth-token" placeholder="Token" />
+    </div>
+
+    <div id="channels-root">Loading...</div>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,350 @@
+/* =========================================================
+   📌 REDOC INSPIRED DARK-FIRST THEME
+========================================================= */
+
+:root {
+    --bg: #0D1117;
+    --surface: #161B22;
+    --border: #1F2937;
+
+    --text: #E6EDF3;
+    --text-muted: #8B949E;
+
+    --primary: #58A6FF;
+    --primary-soft: rgba(88,166,255,0.12);
+    --primary-hover: #79B5FF;
+
+    --radius: 12px;
+    --transition: .25s ease;
+}
+
+/* Light mode */
+body.light {
+    --bg: #FAFAFA;
+    --surface: #FFFFFF;
+    --border: #E5E9EF;
+
+    --text: #3B4151;
+    --text-muted: #6B7280;
+
+    --primary: #6EC1E4;
+    --primary-soft: rgba(110,193,228,0.12);
+    --primary-hover: #3B8BA5;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: var(--transition);
+}
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+    background: var(--surface);
+    padding: 18px 32px;
+    font-size: 22px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.schema-link {
+    background: var(--primary-soft);
+    border: 1px solid var(--primary);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.schema-link:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.top-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.toggle-btn {
+    background: var(--primary-soft);
+    border: 1px solid var(--primary);
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--primary);
+    transition: var(--transition);
+}
+
+.toggle-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.upload-btn {
+    background: var(--primary-soft);
+    border: 1px solid var(--primary);
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--primary);
+    transition: var(--transition);
+    user-select: none;
+}
+
+.upload-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 32px;
+}
+
+/* JSON Preview */
+.json-preview-box {
+    background: var(--surface);
+    padding: 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+    font-family: monospace;
+    font-size: 14px;
+    color: var(--text-muted);
+    max-height: 260px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+}
+
+/* =========================================================
+   BASE URL + AUTH INPUT SECTION
+========================================================= */
+
+.baseurl-box {
+    background: var(--surface);
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 28px;
+}
+
+.baseurl-box label {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    display: block;
+}
+
+.baseurl-box input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border-radius: 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.baseurl-box input:focus {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+}
+
+/* =========================================================
+   CATEGORY HEADERS
+========================================================= */
+
+.tag-header {
+    color: var(--primary);
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 26px;
+}
+
+/* =========================================================
+   ENDPOINT CARD
+========================================================= */
+
+.endpoint {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    margin-top: 16px;
+}
+
+.endpoint-header {
+    background: var(--primary-soft);
+    padding: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.endpoint-path {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.arrow {
+    font-size: 22px;
+    transition: .25s ease;
+}
+
+/* Expanded content */
+.endpoint-body {
+    display: none;
+    padding: 22px;
+    border-top: 1px solid var(--border);
+    line-height: 1.6;
+}
+
+/* =========================================================
+   SCHEMA DISPLAY
+========================================================= */
+
+.endpoint-body b {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--primary);
+}
+
+pre {
+    background: #0B0F14;
+    padding: 14px;
+    border-radius: 10px;
+    color: #A6E3A1;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+/* =========================================================
+   TRY INTERFACE
+========================================================= */
+
+.trybox {
+    margin-top: 26px;
+    padding: 18px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.trybox label {
+    margin-top: 14px;
+    display: block;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.trybox input,
+.trybox textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    background: var(--bg);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.trybox textarea {
+    min-height: 190px;
+    resize: vertical;
+}
+
+/* Query rows */
+.query-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.query-key {
+    max-width: 180px;
+    pointer-events: none;
+    opacity: .6;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn,
+.btn-outline {
+    padding: 10px 16px;
+    margin-top: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 6px;
+    font-weight: 600;
+}
+
+.btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+}
+
+.btn:hover {
+    background: var(--primary-hover);
+}
+
+.btn-outline {
+    border: 1px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* =========================================================
+   LOG VIEWER
+========================================================= */
+
+.log-box {
+    background: black;
+    border: 1px solid var(--border);
+    margin-top: 14px;
+    padding: 12px;
+    border-radius: 8px;
+    min-height: 120px;
+    overflow-y: auto;
+    font-size: 13px;
+    color: #00FF90;
+    white-space: pre-wrap;
+}
