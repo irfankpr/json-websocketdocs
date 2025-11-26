@@ -58,26 +58,44 @@ No dependencies or build steps.
 
 ```json
 {
-  "title": "WebSocket API",
-  "base_url": "ws://localhost:8800/",
-  "auth_param": "token",
-  "channels": [
-    {
-      "tag": "Chat",
-      "path": "ws/chat/{room_id}/",
-      "description": "Send and receive messages.",
-      "query_params": [
-        { "name": "room_id", "description": "Chat room identifier" }
-      ],
-      "request": {
-        "data_model": { "type": "chat.message", "payload": { "text": "string" } }
-      },
-      "response": {
-        "data_model": { "type": "chat.message", "payload": { "text": "string" } }
-      }
-    }
-  ]
+    "title": "Demo WebSocket API",
+    "base_url": "ws://localhost:8800/",
+    "auth_param": "token",
+    "channels": [
+        
+        {
+            "tag": "Chat",
+            "path": "ws/chat/{room_id}/",
+            "description": "Connect and send chat messages.",
+            "query_params": [
+                {"name": "room_id", "description": "Chat room identifier", "required": true},
+                {"name": "mode", "description": "Optional connection mode", "required": false}
+            ],
+            "request": { 
+                "data_model": { "type": "chat.message", "payload": {"text": "string"} }
+            },
+            "response": { 
+                "data_model": { "type": "chat.message", "payload": {"text": "string"} }
+            }
+        },
+
+        {
+            "tag": "System",
+            "path": "ws/notifications/",
+            "description": "Read-only connection to receive system notifications in real time.",
+            "query_params": [],
+            "response": {
+                "data_model": {
+                    "type": "notification.event",
+                    "payload": { "title": "string", "message": "string", "timestamp": "ISO-8601 datetime" }
+                }
+            }
+        }
+        
+    ]
 }
+
+
 ```
 
 Update this file or load another JSON schema via the UI.
