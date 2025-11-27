@@ -89,7 +89,7 @@ function buildEndpoint(tag, index, endpoint, root) {
                 <div id="query-${id}">${queryFields}</div>
 
                 <label>Final URL</label>
-                <input id="ws-url-${id}" data-path="${endpoint.path}" readonly />
+                <input id="ws-url-${id}" data-path="${endpoint.path}"/>
 
                 <button class="btn" onclick="connectWS('${id}')">Connect</button>
                 <button class="btn-outline" onclick="disconnectWS('${id}')">Disconnect</button>
@@ -158,7 +158,18 @@ function connectWS(id) {
     ws.onopen = () => log.innerHTML += "🟢 Connected\n";
     ws.onerror = () => log.innerHTML += "⚠️ Error\n";
     ws.onclose = () => log.innerHTML += "🔌 Disconnected\n";
-    ws.onmessage = e => log.innerHTML += `📩 ${e.data}\n`;
+    ws.onmessage = (e) => {
+        let formatted;
+        try {
+            const json = JSON.parse(e.data);
+            formatted = `<pre>${JSON.stringify(json, null, 2)}</pre>`;
+        } catch {
+            // Not valid JSON → print raw text
+            formatted = e.data;
+        }
+
+            log.innerHTML += `${formatted}\n`;
+    };
 
     sockets[id] = ws;
 }
@@ -169,12 +180,21 @@ function disconnectWS(id) {
 
 function sendWS(id) {
     const log = document.getElementById(`ws-log-${id}`);
-    if (!sockets[id] || sockets[id].readyState !== 1)
-        return log.innerHTML += "❌ Not connected\n";
+    if (!sockets[id] || sockets[id].readyState !== WebSocket.OPEN) {
+        return (log.innerHTML += "❌ Not connected\n");
+    }
 
-    const msg = document.getElementById(`ws-send-${id}`).value;
+    let msgText = document.getElementById(`ws-send-${id}`).value;
+    let msg = msgText;
+
+    try {
+        msg = JSON.stringify(JSON.parse(msgText)); // normalize formatting
+    } catch (err) {
+        log.innerHTML += "⚠️ Invalid JSON — sending raw text\n";
+    }
+
     sockets[id].send(msg);
-    log.innerHTML += `➡️ Sent: ${msg}\n`;
+    log.innerHTML += `➡️ Sent:\n<pre>${msg}</pre>\n`;
 }
 
 function clearLogs(id) {
