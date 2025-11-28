@@ -70,6 +70,16 @@ function buildEndpoint(tag, index, endpoint, root) {
         </div>
     `).join("");
 
+    // Build payload section only if `request` exists
+    const payloadSection = endpoint.request
+        ? `
+            <label>Payload:</label>
+            <textarea id="ws-send-${id}">${JSON.stringify(endpoint.request?.data_model || {}, null, 2)}</textarea>
+            <button class="btn" onclick="sendWS('${id}')">Send</button>
+        `
+        : "";
+
+
     const div = document.createElement("div");
     div.className = "endpoint";
     div.innerHTML = `
@@ -94,10 +104,8 @@ function buildEndpoint(tag, index, endpoint, root) {
                 <button class="btn" onclick="connectWS('${id}')">Connect</button>
                 <button class="btn-outline" onclick="disconnectWS('${id}')">Disconnect</button>
 
-                <label>Payload:</label>
-                <textarea id="ws-send-${id}">${JSON.stringify(endpoint.request?.data_model || {}, null, 2)}</textarea>
-
-                <button class="btn" onclick="sendWS('${id}')">Send</button>
+                ${payloadSection}
+                
                 <button class="btn-outline" onclick="clearLogs('${id}')">Clear Logs</button>
 
                 <div class="log-box" id="ws-log-${id}">Logs...</div>
